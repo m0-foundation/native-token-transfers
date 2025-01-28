@@ -579,9 +579,6 @@ contract NttManager is INttManager, RateLimiter, ManagerBase {
             seq
         );
 
-        emit TransferSent(
-            TransceiverStructs._nttManagerMessageDigest(chainId, encodedNttManagerPayload)
-        );
 
         // return the sequence number
         return seq;
