@@ -146,8 +146,10 @@ pub mod example_native_token_transfers {
         instructions::accept_token_authority(ctx)
     }
 
-    pub fn set_token_authority(ctx: Context<SetTokenAuthorityChecked>) -> Result<()> {
-        instructions::set_token_authority(ctx)
+    pub fn accept_token_authority_from_multisig<'info>(
+        ctx: Context<'_, '_, '_, 'info, AcceptTokenAuthorityFromMultisig<'info>>,
+    ) -> Result<()> {
+        instructions::accept_token_authority_from_multisig(ctx)
     }
 
     pub fn set_token_authority_one_step_unchecked(
@@ -156,12 +158,22 @@ pub mod example_native_token_transfers {
         instructions::set_token_authority_one_step_unchecked(ctx)
     }
 
+    pub fn set_token_authority(ctx: Context<SetTokenAuthorityChecked>) -> Result<()> {
+        instructions::set_token_authority(ctx)
+    }
+
     pub fn revert_token_authority(ctx: Context<RevertTokenAuthority>) -> Result<()> {
         instructions::revert_token_authority(ctx)
     }
 
     pub fn claim_token_authority(ctx: Context<ClaimTokenAuthority>) -> Result<()> {
         instructions::claim_token_authority(ctx)
+    }
+
+    pub fn claim_token_authority_to_multisig(
+        ctx: Context<ClaimTokenAuthorityToMultisig>,
+    ) -> Result<()> {
+        instructions::claim_token_authority_to_multisig(ctx)
     }
 
     pub fn set_paused(ctx: Context<SetPaused>, pause: bool) -> Result<()> {
@@ -174,6 +186,10 @@ pub mod example_native_token_transfers {
 
     pub fn register_transceiver(ctx: Context<RegisterTransceiver>) -> Result<()> {
         instructions::register_transceiver(ctx)
+    }
+
+    pub fn deregister_transceiver(ctx: Context<DeregisterTransceiver>) -> Result<()> {
+        instructions::deregister_transceiver(ctx)
     }
 
     pub fn set_outbound_limit(
@@ -192,6 +208,10 @@ pub mod example_native_token_transfers {
 
     pub fn mark_outbox_item_as_released(ctx: Context<MarkOutboxItemAsReleased>) -> Result<bool> {
         instructions::mark_outbox_item_as_released(ctx)
+    }
+
+    pub fn set_threshold(ctx: Context<SetThreshold>, threshold: u8) -> Result<()> {
+        instructions::set_threshold(ctx, threshold)
     }
 
     // standalone transceiver stuff
